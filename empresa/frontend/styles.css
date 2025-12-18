@@ -1,0 +1,1063 @@
+/* --- Variables --- */
+:root {
+  --primary-bg: #f5f6fa;
+  --primary-text: #23272b;
+  --box-bg: #fff;
+  --box-border: #e0e0e0;
+  --table-header-bg: #f0f2f5;
+  --table-header-text: #23272b;
+  --table-row-bg: #fff;
+  --table-row-hover: #f5f6fa;
+  --button-bg: #23272b;
+  --button-text: #fff;
+  --button-hover-bg: #3498db;
+  --input-bg: #fff;
+  --input-border: #d1d5db;
+  --input-text: #23272b;
+  --shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+}
+
+/* --- Dark mode variables --- */
+body.dark-mode {
+  --primary-bg: #18191a;
+  --primary-text: #f1f1f1;
+  --box-bg: #23272b;
+  --box-border: #23272b;
+  --table-header-bg: #3498db;
+  --table-header-text: #f1f1f1;
+  --table-row-bg: #23272b;
+  --table-row-hover: #2c3e50;
+  --button-bg: #2c3e50;
+  --button-text: #fff;
+  --button-hover-bg: #3498db;
+  --input-bg: #23272b;
+  --input-border: #717375;
+  --input-text: #f1f1f1;
+  --shadow: 0 4px 24px rgba(44, 62, 80, 0.18);
+}
+
+/* --- General --- */
+/* Estilos generales para el body */
+body {
+  background: var(--primary-bg);   /* Fondo dinámico según modo */
+  color: var(--primary-text);      /* Color de texto dinámico */
+  font-family: 'Segoe UI', Arial, sans-serif; /* Fuente principal */
+  transition: background 0.4s, color 0.4s;    /* Transición suave en cambios */
+}
+
+/* Colores para títulos y etiquetas */
+h1, h2, label {
+  color: var(--primary-text);
+  transition: color 0.4s;
+}
+
+/* --- Header --- */
+/* Estilos para el encabezado principal */
+.main-header {
+  width: 100%;
+  background: var(--box-bg);       /* Fondo de header */
+  color: var(--primary-text);      /* Color de texto */
+  padding: 1.2rem 0;               /* Espaciado interno */
+  box-shadow: var(--shadow);       /* Sombra */
+  position: sticky;                /* Fijo arriba al hacer scroll */
+  top: 0;
+  z-index: 100;                    /* Encima de otros elementos */
+  transition: background 0.4s, color 0.4s;
+}
+.header-content {
+  max-width: 1200px;               /* Ancho máximo */
+  margin: 0 auto;                  /* Centrado horizontal */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* Espaciado entre título y acciones */
+  padding: 0 2rem;
+}
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;                       /* Espacio entre icono y texto */
+}
+.header-title h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+  color: var(--primary-text);
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/*Sección de Empleados y Puestos*/
+/* Layout flexible para formularios y tablas */
+.empleados-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+/* Formularios de empleados y puestos */
+#empleadosForm,
+#puestosForm {
+  width: 340px;
+  min-width: 220px;
+  margin: 0;
+  align-self: flex-start;
+}
+
+/* Contenedor de la tabla de empleados */
+.tabla-empleados-wrapper {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
+
+/* Tablas de empleados y puestos */
+#tablaEmpleadosTable,
+#tablaPuestosTable {
+  margin: 0.1rem auto 0 auto;
+}
+
+/* Responsive para pantallas medianas */
+@media (max-width: 900px) {
+  .empleados-flex {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tabla-empleados-wrapper {
+    align-items: stretch;
+  }
+}
+
+/* --- Form Boxes --- */
+/* Contenedores principales de las secciones */
+#empleadosSection, #puestosSection {
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 1890px;
+  padding-left: 0;
+}
+@media (max-width: 600px) {
+  #empleadosSection, #puestosSection {
+    width: 98vw;
+    padding: 1rem;
+  }
+}
+
+/* Ajuste de margen para el formulario de empleados */
+.empleadosForm form {
+  margin-left: 9rem;
+}
+
+/* --- Formulario --- */
+/* Estilos para etiquetas de formularios */
+form label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+}
+/* Inputs y selects en formularios */
+form input, form select {
+  margin-left: 0.5rem;
+  max-width: 150px;
+  width: 100%;
+  border: 2px solid var(--input-border);
+  border-radius: 10px;
+  padding: 7px 12px;
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+  font-size: 15px;
+  background: var(--input-bg);
+  color: var(--input-text);
+  outline: none;
+  transition: border 0.2s, background 0.4s, color 0.4s;
+}
+/* Efecto al enfocar inputs/selects */
+form input:focus, form select:focus {
+  border: 1.5px solid var(--button-bg);
+}
+
+/* --- Tabla moderna --- */
+/* Estilos generales para tablas */
+table {
+  width: 100%;
+  margin: 32px 0 0 0;
+  background: transparent;
+  table-layout: auto; /* Permite resize */
+  font-size: 1rem;
+  box-shadow: var(--shadow);
+  border-radius: 18px;
+  overflow-x: auto;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Encabezado de la tabla */
+thead tr {
+  background: var(--table-header-bg);
+}
+
+/* Celdas del encabezado */
+thead th {
+  padding: 16px 12px;
+  color: var(--table-header-text);
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  text-align: center;
+  min-width: 120px;
+  resize: horizontal;
+  overflow: auto;
+  background: transparent;
+  letter-spacing: 0.5px;
+  user-select: none;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Filas del cuerpo de la tabla */
+tbody tr {
+  background: var(--table-row-bg);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: box-shadow 0.2s, background 0.4s;
+}
+
+/* Efecto hover en filas */
+tbody tr:hover {
+  background: var(--table-row-hover);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+}
+
+/* Celdas del cuerpo de la tabla */
+tbody td {
+  padding: 16px 12px;
+  font-size: 1rem;
+  border: none;
+  color: var(--primary-text);
+  text-align: center;
+  min-width: 90px;
+  background: transparent;
+  transition: background 0.2s, color 0.4s;
+}
+
+/* Celdas editables */
+tbody td[contenteditable="true"] {
+  background: var(--input-bg);
+  border-radius: 6px;
+  outline: none;
+  transition: background 0.2s;
+}
+
+/* Celdas editables al enfocar */
+tbody td[contenteditable="true"]:focus {
+  background: var(--button-bg);
+  color: var(--button-text);
+}
+
+/* Bordes redondeados en extremos de la tabla */
+table th:first-child, table td:first-child {
+  border-radius: 16px 0 0 16px;
+}
+table th:last-child, table td:last-child {
+  border-radius: 0 16px 16px 0;
+}
+
+/* Espaciado entre botones en celdas */
+td button {
+  margin-right: 10px;
+}
+td button:last-child {
+  margin-right: 0;
+}
+
+/* Contenedor de botones de acción */
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ancho mínimo para la última columna */
+td:last-child, th:last-child {
+  min-width: 160px !important;
+  width: 180px;
+}
+
+/* --- Botones modernos --- */
+/* Estilos generales para botones */
+button {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 0 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s, color 0.4s;
+}
+/* Efecto hover en botones */
+button:hover {
+  background: var(--button-hover-bg);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  transform: scale(1.07);
+}
+
+/* --- Selector tabla --- */
+/* Estilo para párrafos de selección de tabla */
+p {
+  margin-left: 2.5rem;
+  margin-top: 2rem;
+  font-weight: 500;
+}
+
+/* --- Responsive tabla --- */
+/* Ajustes para pantallas medianas */
+@media (max-width: 1100px) {
+  .main-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  #empleadosSection, #puestosSection {
+    max-width: 100%;
+    margin: 0 auto 2rem auto;
+  }
+  table {
+    width: 99vw;
+    font-size: 0.95rem;
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 700px) {
+  .main-header, .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  .main-content {
+    padding: 0 0.5rem;
+  }
+  table {
+    font-size: 0.9rem;
+  }
+  thead th, tbody td {
+    min-width: 120px;
+    padding: 16px 18px;
+  }
+}
+
+/* Motion blur animation */
+/* Animación de entrada para tablas */
+@keyframes table-blur-in {
+  0% {
+    filter: blur(16px) brightness(1.2);
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  80% {
+    filter: blur(2px) brightness(1.05);
+    opacity: 1;
+    transform: scale(1.01);
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Clase para aplicar la animación de entrada */
+.table-blur-animate {
+  animation: table-blur-in 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Bootstrap Integration --- */
+/* Mantener los estilos originales sobre Bootstrap */
+
+/* Override Bootstrap form-control para mantener tu diseño */
+.form-control {
+  border: 2px solid var(--input-border) !important;
+  border-radius: 10px !important;
+  padding: 7px 12px !important;
+  font-size: 15px !important;
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  transition: border 0.2s, background 0.4s, color 0.4s !important;
+  max-width: 150px !important;
+  width: 100% !important;
+}
+
+.form-control:focus {
+  border: 1.5px solid var(--button-bg) !important;
+  box-shadow: none !important;
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+}
+
+/* Override Bootstrap form-select para mantener tu diseño */
+.form-select {
+  border: 2px solid var(--input-border) !important;
+  border-radius: 10px !important;
+  padding: 7px 12px !important;
+  font-size: 15px !important;
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  transition: border 0.2s, background 0.4s, color 0.4s !important;
+}
+
+.form-select:focus {
+  border: 1.5px solid var(--button-bg) !important;
+  box-shadow: none !important;
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+}
+
+/* Override Bootstrap form-label para mantener tu diseño */
+.form-label {
+  color: var(--primary-text) !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.7rem !important;
+  transition: color 0.4s !important;
+}
+
+/* Override Bootstrap table para mantener tu diseño */
+.table {
+  --bs-table-bg: transparent !important;
+  --bs-table-color: var(--primary-text) !important;
+  --bs-table-border-color: transparent !important;
+  --bs-table-hover-bg: var(--table-row-hover) !important;
+  --bs-table-hover-color: var(--primary-text) !important;
+  margin: 32px 0 0 0 !important;
+  background: transparent !important;
+  font-size: 1rem !important;
+  box-shadow: var(--shadow) !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  transition: background 0.4s, color 0.4s !important;
+}
+
+.table thead th {
+  background: var(--table-header-bg) !important;
+  color: var(--table-header-text) !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  border: none !important;
+  text-align: center !important;
+  min-width: 120px !important;
+  padding: 16px 12px !important;
+  letter-spacing: 0.5px !important;
+  user-select: none !important;
+  transition: background 0.4s, color 0.4s !important;
+}
+
+.table tbody td {
+  background: var(--table-row-bg) !important;
+  color: var(--primary-text) !important;
+  border: none !important;
+  text-align: center !important;
+  min-width: 90px !important;
+  padding: 16px 12px !important;
+  font-size: 1rem !important;
+  transition: background 0.2s, color 0.4s !important;
+}
+
+.table tbody tr {
+  background: var(--table-row-bg) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07) !important;
+  transition: box-shadow 0.2s, background 0.4s !important;
+}
+
+.table tbody tr:hover {
+  background: var(--table-row-hover) !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.13) !important;
+}
+
+.table tbody tr:hover td {
+  background: var(--table-row-hover) !important;
+}
+
+/* Mantener los bordes redondeados */
+.table th:first-child, .table td:first-child {
+  border-radius: 16px 0 0 16px !important;
+}
+.table th:last-child, .table td:last-child {
+  border-radius: 0 16px 16px 0 !important;
+}
+
+/* Override Bootstrap btn para mantener tu diseño */
+.btn {
+  background: var(--button-bg) !important;
+  color: var(--button-text) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 7px 16px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  margin: 0 2px !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08) !important;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s, color 0.4s !important;
+}
+
+.btn:hover {
+  background: var(--button-hover-bg) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13) !important;
+  transform: scale(1.07) !important;
+}
+
+.btn:focus {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13) !important;
+}
+
+/* Mantener el espaciado de Bootstrap pero con tus estilos */
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+/* Asegurar que el container-fluid no interfiera */
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Responsive mejorado con Bootstrap */
+@media (max-width: 991.98px) {
+  .empleados-flex {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+  
+  .form-rect {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .form-control {
+    max-width: 100% !important;
+  }
+}
+
+/* --- Nuevos Estilos Modernos --- */
+
+/* Sección de Control */
+.control-section {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(108, 117, 125, 0.05) 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem 0 !important; /* Reducir padding */
+}
+
+.control-card {
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.control-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Selector de módulo moderno */
+.module-selector {
+  min-width: 180px !important;
+  border-radius: 12px !important;
+  border: 2px solid var(--input-border) !important;
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.module-selector:focus {
+  border-color: var(--button-hover-bg) !important;
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25) !important;
+}
+
+/* Headers de sección */
+.section-header {
+  padding: 0.5rem 0 1rem 0; /* Reducir padding superior */
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-text) !important;
+  margin-bottom: 0.5rem;
+}
+
+.stats-badge .badge {
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards modernos */
+.form-card, .table-card {
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.form-card:hover, .table-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Headers de cards con gradientes */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+}
+
+/* Formularios modernos mejorados */
+.form-control-modern {
+  border: 2px solid var(--input-border) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  font-size: 15px !important;
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  transition: all 0.3s ease !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.form-control-modern:focus {
+  border-color: var(--button-hover-bg) !important;
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25) !important;
+  transform: translateY(-1px);
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+}
+
+.form-select.form-control-modern {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+}
+
+/* Labels mejorados */
+.form-label.fw-semibold {
+  color: var(--primary-text) !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.75rem !important;
+  font-size: 0.95rem !important;
+  transition: color 0.4s !important;
+}
+
+/* Botones modernos mejorados */
+.btn-modern {
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-modern:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.btn-primary.btn-modern {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+}
+
+.btn-success.btn-modern {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+  color: white !important;
+}
+
+/* Tablas modernas mejoradas */
+.modern-table {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.table-header-modern th {
+  background: var(--table-header-bg) !important;
+  color: var(--table-header-text) !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  padding: 18px 16px !important;
+  border: none !important;
+  position: relative !important;
+}
+
+.table-header-modern th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--button-hover-bg) 50%, transparent 100%);
+}
+
+.modern-table tbody tr {
+  transition: all 0.3s ease !important;
+  border: none !important;
+}
+
+.modern-table tbody tr:hover {
+  background: var(--table-row-hover) !important;
+  transform: scale(1.01) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.modern-table tbody td {
+  padding: 16px !important;
+  border: none !important;
+  vertical-align: middle !important;
+  font-size: 0.95rem !important;
+  color: var(--primary-text) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Botones de acción en tablas */
+.modern-table .btn {
+  padding: 8px 12px !important;
+  margin: 0 3px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Validación de formularios */
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  border-color: #28a745 !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='m2.3 6.73.94-.94 1.44 1.44L7.4 4.5l-.94-.94L4.5 5.5z'/%3e%3c/svg%3e") !important;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  border-color: #dc3545 !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 4.6 2.4 2.4M8.2 4.6l-2.4 2.4'/%3e%3c/svg%3e") !important;
+}
+
+.invalid-feedback {
+  font-size: 0.85rem !important;
+  color: #dc3545 !important;
+  margin-top: 0.5rem !important;
+}
+
+.valid-feedback {
+  font-size: 0.85rem !important;
+  color: #28a745 !important;
+  margin-top: 0.5rem !important;
+}
+
+/* Animaciones mejoradas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.content-section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.form-card {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.table-card {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Responsive mejorado */
+@media (max-width: 1199.98px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .stats-badge {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .form-card {
+    margin-bottom: 2rem;
+  }
+  
+  .section-header {
+    text-align: center;
+  }
+  
+  .stats-badge {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .control-section .row > div {
+    text-align: center;
+  }
+  
+  .module-selector {
+    margin-top: 1rem;
+    min-width: 200px;
+  }
+  
+  .section-title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  
+  .card-body {
+    padding: 1.5rem !important;
+  }
+  
+  .modern-table {
+    font-size: 0.85rem;
+  }
+  
+  .table-header-modern th {
+    padding: 12px 8px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .modern-table tbody td {
+    padding: 12px 8px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Tema oscuro para nuevos elementos */
+body.dark-mode .control-section {
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(108, 117, 125, 0.1) 100%);
+}
+
+body.dark-mode .control-card,
+body.dark-mode .form-card,
+body.dark-mode .table-card {
+  background: rgba(35, 39, 43, 0.95) !important;
+  border-color: var(--box-border) !important;
+}
+
+body.dark-mode .section-title {
+  color: var(--primary-text) !important;
+}
+
+body.dark-mode .form-control-modern {
+  background: var(--input-bg) !important;
+  border-color: var(--input-border) !important;
+  color: var(--input-text) !important;
+}
+
+body.dark-mode .form-control-modern:focus {
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+}
+
+body.dark-mode .module-selector {
+  background: var(--input-bg) !important;
+  border-color: var(--input-border) !important;
+  color: var(--input-text) !important;
+}
+
+/* Arreglar textos en modo oscuro */
+body.dark-mode .text-muted {
+  color: #adb5bd !important;
+}
+
+body.dark-mode .card-title {
+  color: var(--primary-text) !important;
+}
+
+body.dark-mode .form-text {
+  color: #adb5bd !important;
+}
+
+body.dark-mode small {
+  color: #adb5bd !important;
+}
+
+body.dark-mode .invalid-feedback {
+  color: #f5c6cb !important;
+}
+
+body.dark-mode .valid-feedback {
+  color: #d4edda !important;
+}
+
+/* Mejorar header con gradiente profesional */
+.main-header {
+  background: linear-gradient(135deg, var(--box-bg) 0%, rgba(255, 255, 255, 0.95) 100%) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem 0 !important; /* Reducir padding */
+}
+
+body.dark-mode .main-header {
+  background: linear-gradient(135deg, var(--box-bg) 0%, rgba(35, 39, 43, 0.95) 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mejorar botón de tema */
+#theme-toggle {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 1.2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1) rotate(180deg) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode #theme-toggle {
+  background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%) !important;
+  color: #2c3e50 !important;
+}
+
+/* Reducir espacios en main-content */
+.main-content {
+  padding: 1rem 0 !important; /* Reducir padding */
+}
+
+/* Arreglar select de estatus */
+.form-select.form-control-modern {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 16px 12px !important;
+  padding-right: 40px !important;
+}
+
+body.dark-mode .form-select.form-control-modern {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23f1f1f1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+}
+
+/* Mejorar badges de estatus */
+.badge {
+  font-size: 0.8rem !important;
+  padding: 0.5rem 0.8rem !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.badge:hover {
+  transform: scale(1.05) !important;
+}
+
+.badge[contenteditable="true"]:focus {
+  outline: 2px solid var(--button-hover-bg) !important;
+  outline-offset: 2px !important;
+}
+
+/* Mejorar card headers */
+.card-header {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(108, 117, 125, 0.05) 100%) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+body.dark-mode .card-header {
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.2) 0%, rgba(108, 117, 125, 0.1) 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .card-header .card-title {
+  color: var(--primary-text) !important;
+}
+
+/* Arreglar tabla margins */
+.table {
+  margin: 0 !important; /* Eliminar margin superior de tabla */
+}
+
+.modern-table {
+  margin-top: 0 !important;
+}
+
+body.dark-mode select,
+body.dark-mode .form-select {
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border-color: var(--input-border) !important;
+    /* Cambiar el ícono del select a color claro */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23f1f1f1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.75rem center !important;
+    background-size: 16px 12px !important;
+}
+
+/* Hover y focus estados */
+body.dark-mode select:hover,
+body.dark-mode .form-select:hover,
+body.dark-mode select:focus,
+body.dark-mode .form-select:focus {
+    background-color: var(--box-bg) !important;
+    border-color: var(--button-hover-bg) !important;
+    box-shadow: none !important;
+}
+
+/* Opciones del select en modo oscuro */
+body.dark-mode select option,
+body.dark-mode .form-select option {
+    background-color: var(--box-bg);
+    color: var(--primary-text);
+}

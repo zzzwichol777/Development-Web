@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD EMPRESA</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome para íconos en botones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <div class="header-title">
+        <lord-icon src="https://cdn.lordicon.com/gmchnlpj.json" trigger="loop"
+          colors="primary:#30c9e8,secondary:#3a3347" style="width:60px;height:60px;">
+        </lord-icon>
+        <h1>CRUD EMPRESA</h1>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" title="Cambiar Modo">🌙</button>
+      </div>
+    </div>
+  </header>
+  <!-- Sección de Control Principal -->
+  <section class="control-section py-4">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8">
+          <div class="card shadow-sm border-0 control-card">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <h5 class="card-title mb-0 d-flex align-items-center">
+                    <i class="fas fa-cogs me-2 text-primary"></i>
+                    Panel de Control
+                  </h5>
+                  <p class="text-muted mb-0 small">Gestiona empleados y puestos de trabajo</p>
+                </div>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                  <label for="tablaSelect" class="form-label me-3 mb-0 fw-semibold">
+                    <i class="fas fa-database me-1"></i>
+                    Módulo:
+                  </label>
+                  <select id="tablaSelect" class="form-select d-inline-block module-selector">
+                    <option value="empleados">
+                      <i class="fas fa-users"></i> Empleados
+                    </option>
+                    <option value="puestos">
+                      <i class="fas fa-briefcase"></i> Puestos
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Principal de Contenido -->
+  <main class="main-content py-4">
+    <div class="container-fluid">
+
+      <!-- Sección Empleados -->
+      <div id="empleadosSection" class="content-section">
+        <div class="row justify-content-center">
+          <div class="col-12 col-xl-11">
+
+            <!-- Header de Sección -->
+            <div class="section-header mb-4">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <h2 class="section-title mb-1">
+                    <i class="fas fa-users text-primary me-2"></i>
+                    Gestión de Empleados
+                  </h2>
+                  <p class="text-muted mb-0">Administra la información de los empleados de la empresa</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                  <div class="stats-badge">
+                    <span class="badge bg-primary fs-6 px-3 py-2">
+                      <i class="fas fa-chart-bar me-1"></i>
+                      <span id="empleadosCount">0 empleados</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <!-- Formulario de Empleados -->
+              <div class="col-lg-4 col-xl-3">
+                <div class="card shadow-sm border-0 form-card h-100">
+                  <div class="card-header bg-gradient-primary text-white border-0">
+                    <h5 class="card-title mb-0">
+                      <i class="fas fa-user-plus me-2"></i>
+                      Nuevo Empleado
+                    </h5>
+                  </div>
+                  <div class="card-body p-4">
+                    <form id="empleadosForm" class="needs-validation" novalidate>
+                      <input type="hidden" id="ID_Empleado">
+
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label class="form-label fw-semibold">
+                            <i class="fas fa-id-badge text-muted me-1"></i>
+                            Clave Empleado
+                          </label>
+                          <input type="number" class="form-control form-control-modern" id="Clave_Empleado" required>
+                          <div class="invalid-feedback">Por favor ingresa la clave del empleado.</div>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label fw-semibold">
+                            <i class="fas fa-user text-muted me-1"></i>
+                            Nombre
+                          </label>
+                          <input type="text" class="form-control form-control-modern" id="Nombre" required>
+                          <div class="invalid-feedback">Por favor ingresa el nombre.</div>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label fw-semibold">
+                            <i class="fas fa-user text-muted me-1"></i>
+                            Apellido Paterno
+                          </label>
+                          <input type="text" class="form-control form-control-modern" id="A_paterno" required>
+                          <div class="invalid-feedback">Por favor ingresa el apellido paterno.</div>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label fw-semibold">
+                            <i class="fas fa-user text-muted me-1"></i>
+                            Apellido Materno
+                          </label>
+                          <input type="text" class="form-control form-control-modern" id="A_materno" required>
+                          <div class="invalid-feedback">Por favor ingresa el apellido materno.</div>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label fw-semibold">
+                            <i class="fas fa-briefcase text-muted me-1"></i>
+                            ID Puesto
+                          </label>
+                          <input type="number" class="form-control form-control-modern" id="ID_Puesto" required>
+                          <div class="invalid-feedback">Por favor ingresa el ID del puesto.</div>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label fw-semibold">
+                            <i class="fas fa-calendar-plus text-muted me-1"></i>
+                            Fecha de Ingreso
+                          </label>
+                          <input type="date" class="form-control form-control-modern" id="Fecha_Ingreso" required>
+                          <div class="invalid-feedback">Por favor selecciona la fecha de ingreso.</div>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label fw-semibold">
+                            <i class="fas fa-calendar-minus text-muted me-1"></i>
+                            Fecha de Baja
+                          </label>
+                          <input type="date" class="form-control form-control-modern" id="Fecha_Baja">
+                          <small class="form-text text-muted">Opcional - Solo si el empleado ya no está activo</small>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label fw-semibold">
+                            <i class="fas fa-toggle-on text-muted me-1"></i>
+                            Estatus
+                          </label>
+                          <select class="form-select form-control-modern" id="Estatus" required>
+                            <option value="">Seleccionar estatus...</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                            <option value="Suspendido">Suspendido</option>
+                          </select>
+                          <div class="invalid-feedback">Por favor selecciona un estatus.</div>
+                        </div>
+
+                        <div class="col-12 pt-3">
+                          <button type="submit" class="btn btn-primary btn-modern w-100">
+                            <i class="fas fa-save me-2"></i>
+                            Guardar Empleado
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabla de Empleados -->
+              <div class="col-lg-8 col-xl-9">
+                <div class="card shadow-sm border-0 table-card">
+                  <div class="card-header bg-light border-0 d-flex justify-content-between align-items-center">
+                    <div>
+                      <h5 class="card-title mb-0">
+                        <i class="fas fa-table text-primary me-2"></i>
+                        Lista de Empleados
+                      </h5>
+                      <small class="text-muted">Haz clic en cualquier celda para editarla</small>
+                    </div>
+                    <div class="table-actions">
+                      <button class="btn btn-outline-primary btn-sm" onclick="location.reload()">
+                        <i class="fas fa-sync-alt me-1"></i>
+                        Actualizar
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table id="tablaEmpleadosTable" class="table table-hover mb-0 modern-table">
+                        <thead class="table-header-modern">
+                          <tr>
+                            <th class="text-center">
+                              <i class="fas fa-hashtag me-1"></i>
+                              ID
+                            </th>
+                            <th>
+                              <i class="fas fa-id-badge me-1"></i>
+                              Clave
+                            </th>
+                            <th>
+                              <i class="fas fa-user me-1"></i>
+                              Nombre
+                            </th>
+                            <th>
+                              <i class="fas fa-user me-1"></i>
+                              A. Paterno
+                            </th>
+                            <th>
+                              <i class="fas fa-user me-1"></i>
+                              A. Materno
+                            </th>
+                            <th class="text-center">
+                              <i class="fas fa-briefcase me-1"></i>
+                              Puesto
+                            </th>
+                            <th class="text-center">
+                              <i class="fas fa-calendar me-1"></i>
+                              F. Ingreso
+                            </th>
+                            <th class="text-center">
+                              <i class="fas fa-calendar-times me-1"></i>
+                              F. Baja
+                            </th>
+                            <th class="text-center">
+                              <i class="fas fa-toggle-on me-1"></i>
+                              Estatus
+                            </th>
+                            <th class="text-center">
+                              <i class="fas fa-cogs me-1"></i>
+                              Acciones
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody id="tablaEmpleados"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección Puestos -->
+      <div id="puestosSection" class="content-section" style="display:none;">
+        <div class="row justify-content-center">
+          <div class="col-12 col-xl-11">
+
+            <!-- Header de Sección -->
+            <div class="section-header mb-4">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <h2 class="section-title mb-1">
+                    <i class="fas fa-briefcase text-success me-2"></i>
+                    Gestión de Puestos
+                  </h2>
+                  <p class="text-muted mb-0">Administra los puestos de trabajo disponibles en la empresa</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                  <div class="stats-badge">
+                    <span class="badge bg-success fs-6 px-3 py-2">
+                      <i class="fas fa-chart-bar me-1"></i>
+                      <span id="puestosCount">0 puestos</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <!-- Formulario de Puestos -->
+              <div class="col-lg-4 col-xl-3">
+                <div class="card shadow-sm border-0 form-card h-100">
+                  <div class="card-header bg-gradient-success text-white border-0">
+                    <h5 class="card-title mb-0">
+                      <i class="fas fa-plus-circle me-2"></i>
+                      Nuevo Puesto
+                    </h5>
+                  </div>
+                  <div class="card-body p-4">
+                    <form id="puestosForm" class="needs-validation" novalidate>
+                      <input type="hidden" id="ID_Puesto_P">
+
+                      <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                          <i class="fas fa-briefcase text-muted me-1"></i>
+                          Nombre del Puesto
+                        </label>
+                        <input type="text" class="form-control form-control-modern" id="Puesto" required
+                          placeholder="Ej: Gerente, Analista, Desarrollador...">
+                        <div class="invalid-feedback">Por favor ingresa el nombre del puesto.</div>
+                        <small class="form-text text-muted">Ingresa un nombre descriptivo para el puesto</small>
+                      </div>
+
+                      <button type="submit" class="btn btn-success btn-modern w-100">
+                        <i class="fas fa-save me-2"></i>
+                        Guardar Puesto
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabla de Puestos -->
+              <div class="col-lg-8 col-xl-9">
+                <div class="card shadow-sm border-0 table-card">
+                  <div class="card-header bg-light border-0 d-flex justify-content-between align-items-center">
+                    <div>
+                      <h5 class="card-title mb-0">
+                        <i class="fas fa-table text-success me-2"></i>
+                        Lista de Puestos
+                      </h5>
+                      <small class="text-muted">Haz clic en cualquier celda para editarla</small>
+                    </div>
+                    <div class="table-actions">
+                      <button class="btn btn-outline-success btn-sm" onclick="location.reload()">
+                        <i class="fas fa-sync-alt me-1"></i>
+                        Actualizar
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table id="tablaPuestosTable" class="table table-hover mb-0 modern-table">
+                        <thead class="table-header-modern">
+                          <tr>
+                            <th class="text-center">
+                              <i class="fas fa-hashtag me-1"></i>
+                              ID
+                            </th>
+                            <th>
+                              <i class="fas fa-briefcase me-1"></i>
+                              Nombre del Puesto
+                            </th>
+                            <th class="text-center">
+                              <i class="fas fa-cogs me-1"></i>
+                              Acciones
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody id="tablaPuestos"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

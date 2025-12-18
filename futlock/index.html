@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutLock - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="assets/LOGO.png" alt="FutLock Logo">
+                    <h1>FutLock</h1>
+                </div>
+                <p class="tagline">SISTEMA DE GESTIÓN DE EQUIPAMIENTO DEPORTIVO</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">USUARIO</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">CONTRASEÑA</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <span>Recordarme</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-login">INICIAR SESIÓN</button>
+
+                <div id="error-message" class="error-message" style="display: none;"></div>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 FutLock - Universidad Tecnológica de México (UNITEC)</p>
+            <p>Proyecto Integrador - Implementación y Mantenimiento de Sistemas</p>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+
+</html>

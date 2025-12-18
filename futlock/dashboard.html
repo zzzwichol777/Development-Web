@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutLock - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/LOGO.png" alt="FutLock Logo" class="logo-img">
+                <h2>FutLock</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="inventario">
+                    <span class="nav-icon">📦</span>
+                    <span>Inventario</span>
+                </a>
+                <a href="#" class="nav-item" data-section="clientes">
+                    <span class="nav-icon">👥</span>
+                    <span>Clientes</span>
+                </a>
+                <a href="#" class="nav-item" data-section="pedidos">
+                    <span class="nav-icon">🛒</span>
+                    <span>Pedidos</span>
+                </a>
+                <a href="#" class="nav-item" data-section="empleados">
+                    <span class="nav-icon">👔</span>
+                    <span>Empleados</span>
+                </a>
+                <a href="#" class="nav-item" data-section="finanzas">
+                    <span class="nav-icon">💰</span>
+                    <span>Finanzas</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn-logout">
+                    <span>🚪</span>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <h1 id="page-title">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <span id="user-name" class="user-name">Usuario</span>
+                        <span id="user-role" class="user-role">Rol</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon blue">📦</div>
+                            <div class="stat-info">
+                                <h3>0</h3>
+                                <p>Productos en Stock</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">🛒</div>
+                            <div class="stat-info">
+                                <h3>0</h3>
+                                <p>Pedidos del Mes</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">👥</div>
+                            <div class="stat-info">
+                                <h3>0</h3>
+                                <p>Clientes Registrados</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple">💰</div>
+                            <div class="stat-info">
+                                <h3>$0</h3>
+                                <p>Ventas del Mes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <h3>📋 Pedidos Recientes</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Cliente</th>
+                                        <th>Estado</th>
+                                        <th>Monto</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pedidos-recientes">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; color: var(--text-muted);">
+                                            Cargando...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card">
+                            <h3>⚠️ Productos con Bajo Stock</h3>
+                            <div class="stock-alerts">
+                                <p style="color: var(--text-muted);">Cargando...</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Inventario Section -->
+                <section id="inventario-section" class="section">
+                    <div class="section-header">
+                        <h2>Gestión de Inventario</h2>
+                        <button class="btn-primary" onclick="openModal('producto')">+ Agregar Producto</button>
+                    </div>
+
+                    <div class="filter-bar">
+                        <select id="categoria-filter">
+                            <option value="">Todas las categorías</option>
+                            <option value="guantes">Guantes</option>
+                            <option value="casacas">Casacas</option>
+                            <option value="balones">Balones</option>
+                            <option value="tacos">Tacos</option>
+                            <option value="espinilleras">Espinilleras</option>
+                            <option value="pizarras">Pizarras</option>
+                            <option value="carpetas">Carpetas Tácticas</option>
+                        </select>
+                        <input type="text" id="search-producto" placeholder="Buscar producto...">
+                    </div>
+
+                    <table class="data-table full-width">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventario-table">
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: var(--text-muted);">Cargando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Clientes Section -->
+                <section id="clientes-section" class="section">
+                    <div class="section-header">
+                        <h2>Gestión de Clientes</h2>
+                        <button class="btn-primary" onclick="openModal('cliente')">+ Agregar Cliente</button>
+                    </div>
+
+                    <div class="filter-bar">
+                        <input type="text" id="search-cliente" placeholder="Buscar por nombre, teléfono o email...">
+                    </div>
+
+                    <table class="data-table full-width">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Email</th>
+                                <th>Pedidos</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clientes-table">
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: var(--text-muted);">Cargando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Pedidos Section -->
+                <section id="pedidos-section" class="section">
+                    <div class="section-header">
+                        <h2>Gestión de Pedidos</h2>
+                        <button class="btn-primary" onclick="openModal('pedido')">+ Nuevo Pedido</button>
+                    </div>
+
+                    <div class="filter-bar">
+                        <select id="estado-filter">
+                            <option value="">Todos los estados</option>
+                            <option value="PENDIENTE">Pendiente</option>
+                            <option value="EN_PROCESO">En Proceso</option>
+                            <option value="COMPLETADO">Completado</option>
+                        </select>
+                        <input type="date" id="fecha-filter">
+                        <input type="text" id="search-pedido" placeholder="Buscar por cliente o descripción...">
+                    </div>
+
+                    <table class="data-table full-width">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Descripción</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pedidos-table">
+                            <tr>
+                                <td colspan="7" style="text-align: center; color: var(--text-muted);">Cargando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Empleados Section -->
+                <section id="empleados-section" class="section">
+                    <div class="section-header">
+                        <h2>Gestión de Empleados</h2>
+                        <button class="btn-primary" onclick="openModal('empleado')">+ Agregar Empleado</button>
+                    </div>
+
+                    <div class="filter-bar">
+                        <input type="text" id="search-empleado"
+                            placeholder="Buscar por nombre, departamento o puesto...">
+                    </div>
+
+                    <table class="data-table full-width">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Departamento</th>
+                                <th>Puesto</th>
+                                <th>Usuario</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="empleados-table">
+                            <tr>
+                                <td colspan="7" style="text-align: center; color: var(--text-muted);">Cargando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Finanzas Section -->
+                <section id="finanzas-section" class="section">
+                    <div class="section-header">
+                        <h2>Control Financiero</h2>
+                        <button class="btn-primary" onclick="openModal('finanza')">+ Nuevo Registro</button>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon green">📈</div>
+                            <div class="stat-info">
+                                <h3>$0</h3>
+                                <p>Ingresos del Mes</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon red">📉</div>
+                            <div class="stat-info">
+                                <h3>$0</h3>
+                                <p>Egresos (Nómina)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Últimos Movimientos</h3>
+                        <table class="data-table full-width">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tipo</th>
+                                    <th>Descripción</th>
+                                    <th>Forma de Pago</th>
+                                    <th>Monto</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody id="finanzas-table">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; color: var(--text-muted);">Cargando...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Título del Modal</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
