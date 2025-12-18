@@ -108,7 +108,5 @@ Landing page diseñada para la Universidad del Valle de México (UVM).
 ## 👤 Autor
 
 **zzzwichol777**
-
+José Luis OP.
 ---
-
-⭐ Si te gustó este repositorio, ¡no olvides darle una estrella!
